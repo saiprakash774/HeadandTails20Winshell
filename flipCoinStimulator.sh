@@ -1,8 +1,7 @@
 #!/bin/bash
 heads=0;
 tails=0;
-read -p "Enter number of flip required " n
-for (( i=0; i<n; i++ ))
+while [ "$heads" -lt 21 ] && [ "$tails" -lt 21 ]
 do
 	a=$(( RANDOM%2 ));
 	if [ $a == 1 ];
@@ -13,5 +12,10 @@ do
 	fi
 done
 
-echo "Number of head win" $heads
-echo "Number of tail win" $tails
+if [ "$heads" -eq 21 ] && [ "$tails" -eq 21 ]
+then 	echo "Its a tie"
+elif [ "$heads" -eq 21 ]
+then	echo "heads won by " $(($heads-$tails))
+else
+	echo "tails won by " $(($tails-$heads))
+fi
